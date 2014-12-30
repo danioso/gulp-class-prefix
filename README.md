@@ -1,2 +1,2 @@
-gulp-class-prefix
+gulp-css-prefix
 =================
