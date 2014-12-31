@@ -4,12 +4,25 @@ var through     = require('through2'),
 classPrefix = function (prefix) {
   return function classPrefix(styling) {
     var walk = require('rework-walk');
+    var tags = '. # [ : input button select textarea'.split(' ');
+
+    checkTags = function( selector ){
+
+      for(var i=0; i<=tags.length; i++){
+        if( selector.indexOf(tags[i]) === 0 ){
+          return 0;
+        }
+      }
+      return -1;
+    }
+
     walk(styling, function(rule, node) {
       if (!rule.selectors) return rule;
 
       rule.selectors = rule.selectors.map(function(selector) {
 
-        if (selector.indexOf('.') === 0 || selector.indexOf('#') === 0) {
+
+        if (checkTags(selector) === 0) {
           //return selector.split('.').join('.' + prefix);
           return prefix + selector;
         } else if (selector.indexOf('body') === 0 || selector.indexOf('html') === 0) {
@@ -22,6 +35,8 @@ classPrefix = function (prefix) {
           }
 
           return new_selector;
+
+        } else if (selector.indexOf('body') === 0 || selector.indexOf('html') === 0) {
 
         } else {
           return selector;
