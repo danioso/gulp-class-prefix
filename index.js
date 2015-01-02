@@ -4,7 +4,7 @@ var through     = require('through2'),
 classPrefix = function (prefix) {
   return function classPrefix(styling) {
     var walk = require('rework-walk');
-    var tags = '. # [ : input button select textarea'.split(' ');
+    var tags = '* . # [ : input button select textarea ul li div span i article aside details figcaption figure hgroup main menu nav section summary audio canvas progress video a b strong p h1 h2 h3 h4 h5 h6 mark small cap sub sup svg hr pre optgroup code td th table th tr td blockquote thead tbody img figure a'.split(' ');
 
     checkTags = function( selector ){
 
@@ -22,22 +22,19 @@ classPrefix = function (prefix) {
       rule.selectors = rule.selectors.map(function(selector) {
 
 
-        if (checkTags(selector) === 0) {
+        if (selector.indexOf('body') === 0 || selector.indexOf('html') === 0) {
           //return selector.split('.').join('.' + prefix);
-          return prefix + selector;
-        } else if (selector.indexOf('body') === 0 || selector.indexOf('html') === 0) {
+          return selector + prefix;
+        } else if (checkTags(selector) === 0) {
           //return selector.split('.').join('.' + prefix);
           var parts = selector.split(/ (.+)?/);
-          var new_selector = parts[0] + prefix;
+          var new_selector = prefix + parts[0];
 
           if ( parts[1] ){
-            new_selector += parts[1];
+            new_selector += ' ' + parts[1];
           }
 
           return new_selector;
-
-        } else if (selector.indexOf('body') === 0 || selector.indexOf('html') === 0) {
-
         } else {
           return selector;
         }
