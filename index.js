@@ -4,7 +4,7 @@ var through     = require('through2'),
 classPrefix = function (prefix) {
   return function classPrefix(styling) {
     var walk = require('rework-walk');
-    var tags = '* . # [ : input button select textarea ul li div span i article aside details figcaption figure hgroup main menu nav section summary audio canvas progress video a b strong p h1 h2 h3 h4 h5 h6 mark small cap sub sup svg hr pre optgroup code td th table th tr td blockquote thead tbody img figure a'.split(' ');
+    var tags = '* . # [ : label input button select textarea ul li div span i article aside details figcaption figure hgroup main menu nav section summary audio canvas progress video a b strong p h1 h2 h3 h4 h5 h6 mark small cap sub sup svg hr pre optgroup code td th table th tr td blockquote thead tbody img figure a form LABEL INPUT BUTTON SELECT TEXTAREA UL LI DIV SPAN I ARTICLE ASIDE DETAILS FIGCAPTION FIGURE HGROUP MAIN MENU NAV SECTION SUMMARY AUDIO CANVAS PROGRESS VIDEO A B STRONG P H1 H2 H3 H4 H5 H6 MARK SMALL CAP SUB SUP SVG HR PRE OPTGROUP CODE TD TH TABLE TH TR TD BLOCKQUOTE THEAD TBODY IMG FIGURE A FORM'.split(' ');
 
     checkTags = function( selector ){
 
